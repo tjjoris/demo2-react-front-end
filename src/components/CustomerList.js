@@ -7,16 +7,16 @@ class CustomerList extends Component {
                 <table className="ui celled table">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th style={{ width: '50px', textAlign: "center" }}>#</th>
                             <th>Name</th>
                             <th>E-mail</th>
-                            <th>Action</th>
+                            <th style={{ width: "148px" }}>Action</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         <tr>
-                            <td>1</td>
+                            <td style={{ textAlign: "center" }}>1</td>
                             <td>luke</td>
                             <td>myemail</td>
                             <td>
@@ -25,7 +25,7 @@ class CustomerList extends Component {
                             </td>
                         </tr>
                     </tbody>
-                </table>
+                </table >
             </div >
         );
     }
