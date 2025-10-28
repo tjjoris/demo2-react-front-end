@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Customer from "./Customer";
 
 class CustomerList extends Component {
     render() {
@@ -15,15 +16,7 @@ class CustomerList extends Component {
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td style={{ textAlign: "center" }}>1</td>
-                            <td>luke</td>
-                            <td>myemail</td>
-                            <td>
-                                <button className="mini ui blue button">Edit</button>
-                                <button className="mini ui red button">Delete</button>
-                            </td>
-                        </tr>
+                        <Customer />
                     </tbody>
                 </table >
             </div >
