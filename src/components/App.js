@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import MyForm from "./MyForm";
+import "./app.css"
 
 // Main App component
 class App extends Component {
@@ -14,9 +15,7 @@ class App extends Component {
                         </a>
                     </div>
                 </div>
-                <MyForm />
                 <div className="ui main container">
-                    Test
                     <MyForm />
                 </div>
             </div>
