@@ -6,3 +6,11 @@
     margin-top: 24px !important;
     float: right;
 }
+
+.data {
+    margin-top: 15px;
+}
+
+thread tr th {
+    background: #e0e0e0 !important;
+}
