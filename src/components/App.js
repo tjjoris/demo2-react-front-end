@@ -1,10 +1,23 @@
 import React, { Component } from "react";
+import axios from "axios";
 import MyForm from "./MyForm";
 import "./app.css"
 import CustomerList from "./CustomerList";
 
 // Main App component
 class App extends Component {
+    state = {
+        customers: [],
+        url: "http://localhost/laravel/demo2-back-end/public/api/customers"
+    };
+    getCustomers = async () => {
+        const customers = await axios.get(this.state.url);
+        this.setState({ customers: customers.data });
+    };
+
+    componentDidMount() {
+        this.getCustomers();
+    }
     // Render method to display the component
     render() {
         return (
@@ -19,7 +32,7 @@ class App extends Component {
                 <div className="ui main container">
                     <MyForm />
 
-                    <CustomerList />
+                    <CustomerList customers={this.state.customers} />
                 </div>
             </div>
         );
