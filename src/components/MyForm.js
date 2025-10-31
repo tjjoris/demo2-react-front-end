@@ -23,7 +23,9 @@ class MyForm extends Component {
         //prevent from submit
         event.preventDefault();
 
-        this.formValidation();
+        if (this.formValidation()) {
+            this.props.onFormSubmit(this.state.form);
+        };
     };
 
     formValidation = () => {
@@ -40,6 +42,8 @@ class MyForm extends Component {
             alert('Enter email')
             return false;
         }
+
+        return true;
     }
 
     //this is called when the update button is clicked in CustomerList component

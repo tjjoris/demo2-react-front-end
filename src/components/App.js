@@ -19,6 +19,16 @@ class App extends Component {
         this.setState({ customers: customers.data, loader: false });
     };
 
+    createCustomer = async (data) => {
+        this.setState({ loader: true });
+        await axios.post(this.state.url, {
+            first_name: data.first_name,
+            last_name: data.last_name,
+            email: data.email
+        });
+
+        this.getCustomers();
+    };
     componentDidMount() {
         this.getCustomers();
     }
@@ -33,7 +43,17 @@ class App extends Component {
     onEdit = data => {
         // console.log("edit app", data);
         this.setState({ customer: data });
-    }
+    };
+
+    onFormSubmit = (data) => {
+        //console.log('submit app', data);
+        if (data.isEdit) {
+            //if is edit true
+        } else {
+            //if is edit false
+            this.createCustomer(data);
+        }
+    };
 
     deleteCustomer = async id => {
         this.setState({ loader: true });
@@ -54,7 +74,8 @@ class App extends Component {
                     </div>
                 </div>
                 <div className="ui main container">
-                    <MyForm customer={this.state.customer} />
+                    <MyForm customer={this.state.customer}
+                        onFormSubmit={this.onFormSubmit} />
                     {this.state.loader ? <Loader /> : ""}
 
                     <CustomerList
