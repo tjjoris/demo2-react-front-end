@@ -3,16 +3,19 @@ import axios from "axios";
 import MyForm from "./MyForm";
 import "./app.css"
 import CustomerList from "./CustomerList";
+// import Loader from "./Loader";
 
 // Main App component
 class App extends Component {
     state = {
         customers: [],
+        loader: false,
         url: "http://localhost/laravel/demo2-back-end/public/api/customers"
     };
     getCustomers = async () => {
+        this.setState({ loader: true });
         const customers = await axios.get(this.state.url);
-        this.setState({ customers: customers.data });
+        this.setState({ customers: customers.data, loader: false });
     };
 
     componentDidMount() {
@@ -31,6 +34,7 @@ class App extends Component {
                 </div>
                 <div className="ui main container">
                     <MyForm />
+
 
                     <CustomerList customers={this.state.customers} />
                 </div>
