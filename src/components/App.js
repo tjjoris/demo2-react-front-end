@@ -25,8 +25,17 @@ class App extends Component {
     //this function is called by child component CustomerList
     //id is passed from Customer component
     onDelete = (id) => {
-        console.log("app", id);
-    }
+        this.deleteCustomer(id);
+        // console.log("app", id);
+    };
+
+    deleteCustomer = async id => {
+        this.setState({ loader: true });
+        await axios.delete(`${this.state.url}/${id}`);
+
+        this.getCustomers();
+
+    };
     // Render method to display the component
     render() {
         return (
