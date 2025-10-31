@@ -22,7 +22,25 @@ class MyForm extends Component {
     onFormSubmit = (event) => {
         //prevent from submit
         event.preventDefault();
+
+        this.formValidation();
     };
+
+    formValidation = () => {
+        // first name
+        if (document.getElementsByName("first_name")[0].value === '') {
+            alert('Enter first name')
+            return false;
+        }
+        if (document.getElementsByName("last_name")[0].value === '') {
+            alert('Enter last name')
+            return false;
+        }
+        if (document.getElementsByName("email")[0].value === '') {
+            alert('Enter email')
+            return false;
+        }
+    }
 
     //this is called when the update button is clicked in CustomerList component
     componentDidUpdate(prevProps) {
