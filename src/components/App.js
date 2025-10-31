@@ -29,6 +29,16 @@ class App extends Component {
 
         this.getCustomers();
     };
+    editCustomer = async (data) => {
+        //clear customer obj
+        this.setState({ customer: {}, loader: true });
+        await axios.put(`${this.state.url}/${data.id}`, {
+            first_name: data.first_name,
+            last_name: data.last_name,
+            email: data.email
+        })
+        this.getCustomers();
+    }
     componentDidMount() {
         this.getCustomers();
     }
@@ -49,6 +59,7 @@ class App extends Component {
         //console.log('submit app', data);
         if (data.isEdit) {
             //if is edit true
+            this.editCustomer(data);
         } else {
             //if is edit false
             this.createCustomer(data);
