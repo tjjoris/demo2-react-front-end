@@ -3,12 +3,13 @@ import axios from "axios";
 import MyForm from "./MyForm";
 import "./app.css"
 import CustomerList from "./CustomerList";
-// import Loader from "./Loader";
+import Loader from "./Loader";
 
 // Main App component
 class App extends Component {
     state = {
         customers: [],
+        customer: {},
         loader: false,
         url: "http://localhost/laravel/demo2-back-end/public/api/customers"
     };
@@ -29,6 +30,11 @@ class App extends Component {
         // console.log("app", id);
     };
 
+    onEdit = data => {
+        // console.log("edit app", data);
+        this.setState({ customer: data });
+    }
+
     deleteCustomer = async id => {
         this.setState({ loader: true });
         await axios.delete(`${this.state.url}/${id}`);
@@ -48,12 +54,14 @@ class App extends Component {
                     </div>
                 </div>
                 <div className="ui main container">
-                    <MyForm />
-
+                    <MyForm customer={this.state.customer} />
+                    {this.state.loader ? <Loader /> : ""}
 
                     <CustomerList
                         customers={this.state.customers}
-                        onDelete={this.onDelete} />
+                        onDelete={this.onDelete}
+                        onEdit={this.onEdit}
+                    />
                 </div>
             </div>
         );

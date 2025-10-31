@@ -7,6 +7,9 @@ class CustomerList extends Component {
         //call the onDelete function passed from App component
         this.props.onDelete(id);
     }
+    onEdit = data => {
+        this.props.onEdit(data);
+    }
     render() {
         const customers = this.props.customers;
         return (
@@ -25,7 +28,10 @@ class CustomerList extends Component {
                         {
                             customers.map((customer) => {
                                 return (
-                                    <Customer customer={customer} onDelete={this.onDelete} key={customer.id} />
+                                    <Customer customer={customer}
+                                        onDelete={this.onDelete}
+                                        onEdit={this.onEdit}
+                                        key={customer.id} />
                                 )
                             })
                         }
