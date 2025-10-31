@@ -26,6 +26,13 @@ class MyForm extends Component {
         if (this.formValidation()) {
             this.props.onFormSubmit(this.state.form);
         };
+        //change the button to save
+        this.setState({
+            btnName: "Save",
+            btnClass: "ui primary button submit-button"
+        })
+
+        this.clearFormFields();
     };
 
     formValidation = () => {
@@ -44,6 +51,13 @@ class MyForm extends Component {
         }
 
         return true;
+    }
+
+    clearFormFields = () => {
+        //change form state
+        this.setState({ form: { first_name: '', last_name: '', email: '', isEdit: false } });
+        //clear form fields
+        document.querySelector(".form").reset();
     }
 
     //this is called when the update button is clicked in CustomerList component
