@@ -21,6 +21,12 @@ class App extends Component {
     componentDidMount() {
         this.getCustomers();
     }
+
+    //this function is called by child component CustomerList
+    //id is passed from Customer component
+    onDelete = (id) => {
+        console.log("app", id);
+    }
     // Render method to display the component
     render() {
         return (
@@ -36,7 +42,9 @@ class App extends Component {
                     <MyForm />
 
 
-                    <CustomerList customers={this.state.customers} />
+                    <CustomerList
+                        customers={this.state.customers}
+                        onDelete={this.onDelete} />
                 </div>
             </div>
         );

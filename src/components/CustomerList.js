@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import Customer from "./Customer";
 
 class CustomerList extends Component {
+    //this function is called when delete button is clicked in Customer component
+    onDelete = id => {
+        //call the onDelete function passed from App component
+        this.props.onDelete(id);
+    }
     render() {
         const customers = this.props.customers;
         return (
@@ -20,7 +25,7 @@ class CustomerList extends Component {
                         {
                             customers.map((customer) => {
                                 return (
-                                    <Customer customer={customer} key={customer.id} />
+                                    <Customer customer={customer} onDelete={this.onDelete} key={customer.id} />
                                 )
                             })
                         }

@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 
 class Customer extends Component {
+    onDelete = (id) => {
+        // console.log("customerlist", id);
+        // Call the onDelete function passed via props
+        this.props.onDelete(this.props.customer.id);
+    }
     render() {
         const { id, first_name, last_name, email } = this.props.customer;
         return (
@@ -10,7 +15,7 @@ class Customer extends Component {
                 <td>{email}</td>
                 <td>
                     <button className="mini ui blue button">Edit</button>
-                    <button className="mini ui red button">Delete</button>
+                    <button className="mini ui red button" onClick={this.onDelete}>Delete</button>
                 </td>
             </tr>
         )
