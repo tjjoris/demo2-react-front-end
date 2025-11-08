@@ -11,7 +11,8 @@ class App extends Component {
         customers: [],
         customer: {},
         loader: false,
-        url: "http://localhost/laravel/demo2-back-end/public/api/customers"
+        // url: "http://localhost/laravel/demo2-back-end/public/api/customers"
+        url: "https://demo2-back-end.luke-j.com/api/customers"
     };
     getCustomers = async () => {
         this.setState({ loader: true });
