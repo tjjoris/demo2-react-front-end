@@ -1,0 +1,2 @@
+to run in dev mode in console type:
+npm start
