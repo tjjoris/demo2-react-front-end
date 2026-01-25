@@ -1,2 +1,13 @@
 to run in dev mode in console type:
 npm start
+
+Note:
+there were boken paths in the build/index.html I manually changed them, 
+but i should fix it properly for when the project builds 
+by adding this to package.json then rebuilding with npm run build:
+"homepage": "./",
+Note: it goes in the object within root.
+
+Note:
+I could run the project in xampp by just navigating to the build folder
+ and not needing to run npm start.
