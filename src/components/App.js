@@ -4,6 +4,7 @@ import MyForm from "./MyForm";
 import "./app.css"
 import CustomerList from "./CustomerList";
 import Loader from "./Loader";
+import LoginBar from "./LoginBar";
 
 // Main App component
 class App extends Component {
@@ -12,7 +13,8 @@ class App extends Component {
         customer: {},
         loader: false,
         // url: "http://localhost/laravel/demo2-back-end/public/api/customers"
-        url: "https://demo2-back-end.luke-j.com/api/customers"
+        // url: "https://demo2-back-end.luke-j.com/api/customers"
+        url: "http://127.0.0.1:8000/api/customers" //XAMPP
     };
     getCustomers = async () => {
         this.setState({ loader: true });
@@ -86,6 +88,8 @@ class App extends Component {
                     </div>
                 </div>
                 <div className="ui main container">
+
+                    <LoginBar />
                     <MyForm customer={this.state.customer}
                         onFormSubmit={this.onFormSubmit} />
                     {this.state.loader ? <Loader /> : ""}
