@@ -1,14 +1,20 @@
-import React, { Component } from "react";
+import React, { Component, useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 class LoginBar extends Component {
-    async registerBob() {
-        const response = await fetch("http://127.0.0.1:8000/api/register", {
+    async handleRegister() {
+        // e.preventDefault();
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/register`, {
             method: "post",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
             body: JSON.stringify({
                 name: "Bob",
                 email: "bob@example.com",
                 password: "pw1234",
-                password_confirmation: "pw1234"
+                password_confirmation: "pw1234",
             })
         });
         const data = await response.json();
@@ -27,7 +33,7 @@ class LoginBar extends Component {
                     </div>
 
                 </form>
-                <button onClick={() => this.registerBob()}>Register Bob</button>
+                <button onClick={() => this.handleRegister()}>Register Bob</button>
             </>
         )
     }
