@@ -8,6 +8,7 @@ import LoginBar from "./LoginBar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "../Pages/Layout";
 import Home from "../Pages/Home";
+import LoginStatusBar from "./LoginStatusBar";
 
 // Main App component
 class App extends Component {
@@ -97,7 +98,8 @@ class App extends Component {
                 </div>
                 <div className="ui main container">
 
-                    <LoginBar />
+                    {/* <LoginBar /> */}
+                    <LoginStatusBar />
                     <MyForm customer={this.state.customer}
                         onFormSubmit={this.onFormSubmit} />
                     {this.state.loader ? <Loader /> : ""}
