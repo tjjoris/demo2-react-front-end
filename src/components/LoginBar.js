@@ -10,8 +10,9 @@ export default function LoginBar({ setLoginStatus }) {
     async function handleLogin(e) {
         e.preventDefault();
         try {
-            await axios.get('http://localhost:8000/sanctum/csrf-cookie').then(response => {
-
+            // await axios.get('http://localhost:8000/sanctum/csrf-cookie').then(response => {
+            await api.get('/sanctum/csrf-cookie').then(response => {
+                alert("axios domain address: " + api.defaults.baseURL);
                 // Now you can make your registration request
                 const csrfToken = document.cookie
                     .split('; ')
@@ -20,11 +21,15 @@ export default function LoginBar({ setLoginStatus }) {
 
                 // console.log('CSRF token:', csrfToken);
                 // alert('CSRF token: ' + csrfToken);
-                axios.post('http://localhost:8000/api/login', {
+                // axios.post('http://localhost:8000/api/login', {
+                api.post('/api/login', {
                     email,
                     password
                 }).then(response => {
                     console.log('Login successful:', response.data);
+                    alert("login data" + JSON.stringify(response.data));
+                    //save the login cookie to the browser, so that the user can stay logged in even after refreshing the page.
+
                     setLoginStatus("logout"); // Switch back to logout status after successful login
                 });
             }
@@ -44,7 +49,7 @@ export default function LoginBar({ setLoginStatus }) {
                 <input type="email" name="email" value={email} onChange={e => setEmail(e.target.value)} />
                 <label >password</label>
                 <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} />
-                <button type="submit" name="submit">Register</button>
+                <button type="submit" name="submit">Login</button>
             </form>
         </>
     )

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import api from "../axiosInstance";
 import MyForm from "./MyForm";
 import "./app.css"
 import CustomerList from "./CustomerList";
@@ -10,8 +11,8 @@ import Layout from "../Pages/Layout";
 import Home from "../Pages/Home";
 import LoginStatusBar from "./LoginStatusBar";
 
-axios.defaults.withCredentials = true;
-axios.defaults.withXSRFToken = true;
+// axios.defaults.withCredentials = true;
+// axios.defaults.withXSRFToken = true;
 
 // Main App component
 class App extends Component {
