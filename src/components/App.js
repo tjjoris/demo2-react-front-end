@@ -5,6 +5,9 @@ import "./app.css"
 import CustomerList from "./CustomerList";
 import Loader from "./Loader";
 import LoginBar from "./LoginBar";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "../Pages/Layout";
+import Home from "../Pages/Home";
 
 // Main App component
 class App extends Component {
@@ -79,6 +82,11 @@ class App extends Component {
     // Render method to display the component
     render() {
         return (
+            // <BrowserRouter>
+            //     <Routes>
+            //         <Route Path="/" element={<Layout />}>
+            //             <Route index element={<Home />} />
+
             <div>
                 <div className="ui fixed inverted menu">
                     <div className="ui container">
@@ -101,6 +109,7 @@ class App extends Component {
                     />
                 </div>
             </div>
+            // </Route></Routes ></BrowserRouter >
         );
     }
 }
