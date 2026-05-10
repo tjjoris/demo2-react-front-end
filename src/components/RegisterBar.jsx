@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from 'axios';
 
 
-export default function RegisterBar() {
+export default function RegisterBar({ setLoginStatus }) {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -20,7 +20,7 @@ export default function RegisterBar() {
                     ?.split('=')[1];
 
                 // console.log('CSRF token:', csrfToken);
-                alert('CSRF token: ' + csrfToken);
+                // alert('CSRF token: ' + csrfToken);
                 axios.post('http://localhost:8000/api/register', {
                     name,
                     email,
@@ -28,8 +28,7 @@ export default function RegisterBar() {
                     password_confirmation: passwordConfirmation
                 }).then(response => {
                     console.log('Registration successful:', response.data);
-                    // const response = await axios.post('http://localhost:8000/api/register', {
-                    //     name, email, password, passwordConfirmation
+                    setLoginStatus("login"); // Switch back to login status after successful registration
                 });
             }
             ).catch(error => {

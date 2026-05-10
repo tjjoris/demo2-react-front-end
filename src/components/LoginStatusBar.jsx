@@ -19,7 +19,8 @@ export default function LoginStatusBar() {
 
     if (loginStatus === "register") {
         content = <>
-            <RegisterBar />
+            hello world
+            <RegisterBar setLoginStatus={setLoginStatus} />
             <button onClick={() => { setLoginStatus("login") }}>Login</button>
         </>
     }
