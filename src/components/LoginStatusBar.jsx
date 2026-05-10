@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import RegisterBar from "./RegisterBar";
+import LoginBar from "./LoginBar";
 
 export default function LoginStatusBar() {
     //state for showing a login form, register form, or logout button.
@@ -13,6 +14,7 @@ export default function LoginStatusBar() {
     // };
     if (loginStatus === "login") {
         content = <>
+            <LoginBar setLoginStatus={setLoginStatus} />
             <button onClick={() => { setLoginStatus("register") }}>Register</button>
         </>
     }
