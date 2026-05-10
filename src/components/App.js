@@ -10,6 +10,9 @@ import Layout from "../Pages/Layout";
 import Home from "../Pages/Home";
 import LoginStatusBar from "./LoginStatusBar";
 
+axios.defaults.withCredentials = true;
+axios.defaults.withXSRFToken = true;
+
 // Main App component
 class App extends Component {
     state = {
@@ -20,6 +23,7 @@ class App extends Component {
         // url: "https://demo2-back-end.luke-j.com/api/customers"
         url: "http://127.0.0.1:8000/api/customers" //XAMPP
     };
+
     getCustomers = async () => {
         this.setState({ loader: true });
         const customers = await axios.get(this.state.url);
@@ -82,6 +86,7 @@ class App extends Component {
     };
     // Render method to display the component
     render() {
+
         return (
             // <BrowserRouter>
             //     <Routes>
