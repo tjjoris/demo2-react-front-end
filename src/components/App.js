@@ -33,7 +33,7 @@ class App extends Component {
 
     createCustomer = async (data) => {
         this.setState({ loader: true });
-        await axios.post(this.state.url, {
+        await api.post(this.state.url, {
             first_name: data.first_name,
             last_name: data.last_name,
             email: data.email
