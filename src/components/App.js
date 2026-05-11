@@ -27,7 +27,7 @@ class App extends Component {
 
     getCustomers = async () => {
         this.setState({ loader: true });
-        const customers = await axios.get(this.state.url);
+        const customers = await api.get(this.state.url);
         this.setState({ customers: customers.data, loader: false });
     };
 
@@ -44,7 +44,7 @@ class App extends Component {
     editCustomer = async (data) => {
         //clear customer obj
         this.setState({ customer: {}, loader: true });
-        await axios.put(`${this.state.url}/${data.id}`, {
+        await api.put(`${this.state.url}/${data.id}`, {
             first_name: data.first_name,
             last_name: data.last_name,
             email: data.email
@@ -80,7 +80,7 @@ class App extends Component {
 
     deleteCustomer = async id => {
         this.setState({ loader: true });
-        await axios.delete(`${this.state.url}/${id}`);
+        await api.post(`/delete/${id}`);
 
         this.getCustomers();
 
