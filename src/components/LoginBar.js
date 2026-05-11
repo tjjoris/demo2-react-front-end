@@ -12,7 +12,6 @@ export default function LoginBar({ setLoginStatus }) {
         try {
             // await axios.get('http://localhost:8000/sanctum/csrf-cookie').then(response => {
             await api.get('/sanctum/csrf-cookie').then(response => {
-                // alert("axios domain address: " + api.defaults.baseURL);
                 // Now you can make your registration request
                 const csrfToken = document.cookie
                     .split('; ')
@@ -20,14 +19,12 @@ export default function LoginBar({ setLoginStatus }) {
                     ?.split('=')[1];
 
                 // console.log('CSRF token:', csrfToken);
-                // alert('CSRF token: ' + csrfToken);
                 // axios.post('http://localhost:8000/api/login', {
                 api.post('/authenticate', {
                     email,
                     password
                 }).then(response => {
                     console.log('Login successful:', response.data);
-                    // alert("login data" + JSON.stringify(response.data));
                     //save the login cookie to the browser, so that the user can stay logged in even after refreshing the page.
 
                     setLoginStatus("logout"); // Switch back to logout status after successful login

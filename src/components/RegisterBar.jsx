@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from 'axios';
+import api from "../axiosInstance";
 
 
 export default function RegisterBar({ setLoginStatus }) {
@@ -11,7 +11,7 @@ export default function RegisterBar({ setLoginStatus }) {
     async function handleRegister(e) {
         e.preventDefault();
         try {
-            await axios.get('http://localhost:8000/sanctum/csrf-cookie').then(response => {
+            await api.get('/sanctum/csrf-cookie').then(response => {
 
                 // Now you can make your registration request
                 const csrfToken = document.cookie
@@ -19,9 +19,7 @@ export default function RegisterBar({ setLoginStatus }) {
                     .find(row => row.startsWith('XSRF-TOKEN='))
                     ?.split('=')[1];
 
-                // console.log('CSRF token:', csrfToken);
-                // alert('CSRF token: ' + csrfToken);
-                axios.post('http://localhost:8000/api/register', {
+                api.post('/api/register', {
                     name,
                     email,
                     password,
