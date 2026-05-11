@@ -22,7 +22,7 @@ export default function LoginBar({ setLoginStatus }) {
                 // console.log('CSRF token:', csrfToken);
                 // alert('CSRF token: ' + csrfToken);
                 // axios.post('http://localhost:8000/api/login', {
-                api.post('/api/login', {
+                api.post('/authenticate', {
                     email,
                     password
                 }).then(response => {

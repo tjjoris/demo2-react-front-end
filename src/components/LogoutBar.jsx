@@ -10,6 +10,7 @@ export default function LogoutBar({ setLoginStatus }) {
         (async () => {
             try {
                 const res = await api.get("/api/user");
+                alert("user data: " + JSON.stringify(res.data));
                 if (mounted) setUser(res.data);
             } catch (err) {
                 console.error("fetch user failed", err.response?.status, err.response?.data);
