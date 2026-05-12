@@ -36,17 +36,18 @@ class MyForm extends Component {
     };
 
     formValidation = () => {
-        // first name
-        if (document.getElementsByName("first_name")[0].value === '') {
-            alert('Enter first name')
+        // validate using component state to avoid colliding with other inputs on the page
+        const { first_name, last_name, email } = this.state.form;
+        if (!first_name || first_name.trim() === '') {
+            alert('Enter first name');
             return false;
         }
-        if (document.getElementsByName("last_name")[0].value === '') {
-            alert('Enter last name')
+        if (!last_name || last_name.trim() === '') {
+            alert('Enter last name');
             return false;
         }
-        if (document.getElementsByName("email")[0].value === '') {
-            alert('Enter email')
+        if (!email || email.trim() === '') {
+            alert('Enter email');
             return false;
         }
 
@@ -85,7 +86,7 @@ class MyForm extends Component {
                     </div>
                     <div className="four wide field">
                         <label>Email </label>
-                        <input type="text" name="email" placeholder="First email" onChange={this.handleChange} value={this.state.form.email} />
+                        <input type="text" name="email" placeholder="Email" onChange={this.handleChange} value={this.state.form.email} />
                     </div>
                     <div className="four wide field">
                         <button className={this.state.btnClass} onClick={this.onFormSubmit}>{this.state.btnName} </button>

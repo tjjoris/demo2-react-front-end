@@ -1,9 +1,18 @@
 import React, { Component } from "react";
 import axios from "axios";
+import api from "../axiosInstance";
 import MyForm from "./MyForm";
 import "./app.css"
 import CustomerList from "./CustomerList";
 import Loader from "./Loader";
+import LoginBar from "./LoginBar";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "../Pages/Layout";
+import Home from "../Pages/Home";
+import LoginStatusBar from "./LoginStatusBar";
+
+// axios.defaults.withCredentials = true;
+// axios.defaults.withXSRFToken = true;
 
 // Main App component
 class App extends Component {
@@ -12,17 +21,19 @@ class App extends Component {
         customer: {},
         loader: false,
         // url: "http://localhost/laravel/demo2-back-end/public/api/customers"
-        url: "https://demo2-back-end.luke-j.com/api/customers"
+        // url: "https://demo2-back-end.luke-j.com/api/customers"
+        url: "http://127.0.0.1:8000/api/customers" //XAMPP
     };
+
     getCustomers = async () => {
         this.setState({ loader: true });
-        const customers = await axios.get(this.state.url);
+        const customers = await api.get('/api/customers');
         this.setState({ customers: customers.data, loader: false });
     };
 
     createCustomer = async (data) => {
         this.setState({ loader: true });
-        await axios.post(this.state.url, {
+        await api.post("/api/customers", {
             first_name: data.first_name,
             last_name: data.last_name,
             email: data.email
@@ -33,7 +44,7 @@ class App extends Component {
     editCustomer = async (data) => {
         //clear customer obj
         this.setState({ customer: {}, loader: true });
-        await axios.put(`${this.state.url}/${data.id}`, {
+        await api.put(`/api/customers/${data.id}`, {
             first_name: data.first_name,
             last_name: data.last_name,
             email: data.email
@@ -69,14 +80,20 @@ class App extends Component {
 
     deleteCustomer = async id => {
         this.setState({ loader: true });
-        await axios.delete(`${this.state.url}/${id}`);
+        await api.delete(`/api/customers/${id}`);
 
         this.getCustomers();
 
     };
     // Render method to display the component
     render() {
+
         return (
+            // <BrowserRouter>
+            //     <Routes>
+            //         <Route Path="/" element={<Layout />}>
+            //             <Route index element={<Home />} />
+
             <div>
                 <div className="ui fixed inverted menu">
                     <div className="ui container">
@@ -86,6 +103,9 @@ class App extends Component {
                     </div>
                 </div>
                 <div className="ui main container">
+
+                    {/* <LoginBar /> */}
+                    <LoginStatusBar />
                     <MyForm customer={this.state.customer}
                         onFormSubmit={this.onFormSubmit} />
                     {this.state.loader ? <Loader /> : ""}
@@ -97,6 +117,7 @@ class App extends Component {
                     />
                 </div>
             </div>
+            // </Route></Routes ></BrowserRouter >
         );
     }
 }

@@ -1,5 +1,7 @@
 # User Catalogue
-React front-end interface for creating, editing, and delting user profiles, communicates with Laravel-based RESTful API.
+React front-end for creating, editing, and delting user profiles, communicates with Laravel-based RESTful API.
+
+**Note:** User authentication has been implemented to repos but not yet deployed to live demo.
 ## demo:
 [User Catalogue](https://demo2-front-end.luke-j.com/)
 
